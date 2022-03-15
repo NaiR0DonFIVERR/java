@@ -9,6 +9,6 @@ public class ClientDate {
         //System.out.println(d2.toString());
         System.out.println(d1.compareTo(d2));
         System.out.println(d1.dateDuLenDemain());
-        System.out.println(d2.dateDeLaVeille());
+        System.out.println(d2.dateDeLaVeille());//jyfv
         }
 }
