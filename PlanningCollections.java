@@ -1,13 +1,34 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.Set;
 
 public class PlanningCollections {
     private ArrayList <Reservation> chListeReservation = new ArrayList<Reservation>();
     private TreeSet <Reservation> chTreeReservation  = new TreeSet<Reservation>();
+    private TreeMap <Integer, TreeSet<Reservation>> chMap = new TreeMap <Integer, TreeSet<Reservation>>();
 
+    void ajoutMap (Reservation parReserv){
+        int noSem=parReserv.getDate().getNoSem(); // ajouter la methosde getnosem dans date calendrier
+        if (chMap.containsKey(noSem)){
+            TreeSet<Reservation> leset = chMap.get(noSem);
+            leset.add(parReserv);
+        }
+        else{
+            TreeSet<Reservation> nouv = new TreeSet <>();
+            nouv.add(parReserv);
+            chMap.put(noSem,nouv);
+        }
+    }
+    
     public String toString() {
-        return "taille des listes est de " +  chListeReservation.size() +"\n"+ "Contenu de la liste ARRAY: "+chListeReservation.toString()+"\n"+"Contenu de la liste Treeset: "+ chTreeReservation.toString();
+        //return "taille des listes est de " +  chListeReservation.size() +"\n"+ "Contenu de la liste ARRAY: "+chListeReservation.toString()+"\n"+"Contenu de la liste Treeset: "+ chTreeReservation.toString();
+        String str = " " ;
+        Set <Integer>cles = chMap.keySet();
+        for(Integer cle:cles)
+            str+=cle+":"+chMap.get(cle)+"\n";
+        return str ;
     }
     public void ajout(Reservation parReserv){
         chListeReservation.add(parReserv);
