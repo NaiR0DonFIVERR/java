@@ -9,14 +9,14 @@ public class PlanningCollections {
     private TreeSet <Reservation> chTreeReservation  = new TreeSet<Reservation>();
     private TreeMap <Integer, TreeSet<Reservation>> chMap = new TreeMap <Integer, TreeSet<Reservation>>();
 
-    void ajoutMap (Reservation parReserv){
+    public void ajoutMap (Reservation parReserv){
         int noSem=parReserv.getDate().getNoSem(); // ajouter la methosde getnosem dans date calendrier
         if (chMap.containsKey(noSem)){
             TreeSet<Reservation> leset = chMap.get(noSem);
             leset.add(parReserv);
         }
         else{
-            TreeSet<Reservation> nouv = new TreeSet <>();
+            TreeSet<Reservation> nouv = new TreeSet<Reservation>();
             nouv.add(parReserv);
             chMap.put(noSem,nouv);
         }
@@ -27,7 +27,7 @@ public class PlanningCollections {
         String str = " " ;
         Set <Integer>cles = chMap.keySet();
         for(Integer cle:cles)
-            str+=cle+":"+chMap.get(cle)+"\n";
+            str+=cle+":"+chMap.get(cle) +"\n";
         return str ;
     }
     public void ajout(Reservation parReserv){
